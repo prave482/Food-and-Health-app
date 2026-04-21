@@ -10,7 +10,7 @@ router = APIRouter()
 class ChatRequest(BaseModel):
     message: str
 
-@router.post("/coach")
+@router.post("/coach/")
 async def ai_coach(
     request: ChatRequest,
     current_user: models.User = Depends(get_current_user),
