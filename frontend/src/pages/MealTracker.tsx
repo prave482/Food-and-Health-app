@@ -65,7 +65,7 @@ const MealTracker: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-20">
+    <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white pt-24 pb-20 transition-colors duration-300">
       <div className="container mx-auto px-6 max-w-5xl">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
@@ -84,13 +84,13 @@ const MealTracker: React.FC = () => {
 
         {/* Daily Summary Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-          <SummaryCard label="Calories" value={meals.reduce((acc, m) => acc + m.calories, 0)} unit="kcal" icon={<Zap className="w-4 h-4" />} />
+          <SummaryCard label="Calories" value={meals.reduce((acc, m) => acc + m.calories, 0)} unit="kcal" icon={<ZapIcon className="w-4 h-4" />} />
           <SummaryCard label="Protein" value={meals.reduce((acc, m) => acc + m.protein, 0)} unit="g" />
           <SummaryCard label="Carbs" value={meals.reduce((acc, m) => acc + m.carbs, 0)} unit="g" />
           <SummaryCard label="Fat" value={meals.reduce((acc, m) => acc + m.fat, 0)} unit="g" />
         </div>
 
-        <div className="bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-8 min-h-[400px]">
+        <div className="bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-[2.5rem] p-8 min-h-[400px] shadow-sm">
           {loading && meals.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 gap-4">
               <Loader2 className="w-12 h-12 animate-spin text-orange-500" />
@@ -98,8 +98,8 @@ const MealTracker: React.FC = () => {
             </div>
           ) : meals.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 text-center">
-              <div className="bg-white/[0.03] p-6 rounded-full mb-6">
-                <Info className="w-12 h-12 text-gray-600" />
+              <div className="bg-gray-100 dark:bg-white/[0.03] p-6 rounded-full mb-6">
+                <Info className="w-12 h-12 text-gray-400 dark:text-gray-600" />
               </div>
               <h2 className="text-2xl font-bold mb-2">No meals logged today</h2>
               <p className="text-gray-500 max-w-sm">Start tracking your intake by clicking the "Log Meal" button above.</p>
@@ -113,27 +113,27 @@ const MealTracker: React.FC = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
-                    className="bg-white/[0.03] p-6 rounded-2xl border border-white/5 flex justify-between items-center group hover:border-orange-500/30 transition-all"
+                    className="bg-gray-50 dark:bg-white/[0.03] p-6 rounded-2xl border border-gray-200 dark:border-white/5 flex justify-between items-center group hover:border-orange-500/30 transition-all shadow-sm dark:shadow-none"
                   >
                     <div>
                       <span className="text-[10px] font-black uppercase tracking-widest text-orange-500 mb-1 block">{meal.meal_type}</span>
-                      <h3 className="text-xl font-bold text-white mb-1">{meal.name}</h3>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{meal.name}</h3>
                       <div className="flex items-center gap-3 text-gray-500 text-sm font-medium">
                         <span>{meal.quantity}{meal.unit}</span>
-                        <span className="w-1 h-1 bg-gray-700 rounded-full" />
-                        <span className="text-orange-400">{Math.round(meal.calories)} kcal</span>
+                        <span className="w-1 h-1 bg-gray-300 dark:bg-gray-700 rounded-full" />
+                        <span className="text-orange-500 dark:text-orange-400">{Math.round(meal.calories)} kcal</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-8">
                       <div className="text-right hidden md:block">
-                        <span className="text-[10px] font-bold text-gray-600 uppercase tracking-widest block mb-1">P / C / F</span>
-                        <span className="text-sm font-bold text-gray-300">
-                          {Math.round(meal.protein)}g <span className="text-gray-700 mx-1">/</span> {Math.round(meal.carbs)}g <span className="text-gray-700 mx-1">/</span> {Math.round(meal.fat)}g
+                        <span className="text-[10px] font-bold text-gray-400 dark:text-gray-600 uppercase tracking-widest block mb-1">P / C / F</span>
+                        <span className="text-sm font-bold text-gray-600 dark:text-gray-300">
+                          {Math.round(meal.protein)}g <span className="text-gray-300 dark:text-gray-700 mx-1">/</span> {Math.round(meal.carbs)}g <span className="text-gray-300 dark:text-gray-700 mx-1">/</span> {Math.round(meal.fat)}g
                         </span>
                       </div>
                       <button 
                         onClick={() => deleteMeal(meal.id)} 
-                        className="w-10 h-10 rounded-xl bg-white/[0.02] flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-red-500/10 transition-all"
+                        className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-white/[0.02] flex items-center justify-center text-gray-400 dark:text-gray-600 hover:text-red-500 hover:bg-red-500/10 transition-all"
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>
@@ -148,26 +148,26 @@ const MealTracker: React.FC = () => {
         {/* Add Meal Modal */}
         <AnimatePresence>
           {isAdding && (
-            <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] flex items-center justify-center p-6">
+            <div className="fixed inset-0 bg-black/40 dark:bg-black/80 backdrop-blur-md z-[100] flex items-center justify-center p-6">
               <motion.div 
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
-                className="bg-[#1A1A1A] border border-white/10 rounded-[2.5rem] p-10 w-full max-w-md shadow-2xl"
+                className="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-white/10 rounded-[2.5rem] p-10 w-full max-w-md shadow-2xl"
               >
                 <div className="mb-8">
-                  <h2 className="text-3xl font-extrabold mb-2">Log Meal</h2>
+                  <h2 className="text-3xl font-extrabold mb-2 text-gray-900 dark:text-white">Log Meal</h2>
                   <p className="text-gray-500 font-medium text-sm">Add food to your daily nutrition log</p>
                 </div>
                 
                 <form onSubmit={handleAddMeal} className="space-y-6">
                   <div>
-                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2 block ml-1">Food Name</label>
+                    <label className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2 block ml-1">Food Name</label>
                     <div className="relative">
-                      <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
+                      <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                       <input 
                         required
-                        className="w-full bg-white/[0.05] border border-white/10 pl-12 pr-4 py-4 rounded-2xl outline-none focus:border-orange-500/50 focus:bg-white/[0.08] transition-all text-white placeholder:text-gray-600"
+                        className="w-full bg-gray-50 dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 pl-12 pr-4 py-4 rounded-2xl outline-none focus:border-orange-500/50 focus:bg-white dark:focus:bg-white/[0.08] transition-all text-gray-900 dark:text-white placeholder:text-gray-400"
                         placeholder="e.g. Greek Yogurt"
                         value={newMeal.name}
                         onChange={(e) => setNewMeal({...newMeal, name: e.target.value})}
@@ -177,18 +177,18 @@ const MealTracker: React.FC = () => {
 
                   <div className="grid grid-cols-2 gap-6">
                     <div>
-                      <label className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2 block ml-1">Quantity</label>
+                      <label className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2 block ml-1">Quantity</label>
                       <input 
                         type="number"
-                        className="w-full bg-white/[0.05] border border-white/10 px-4 py-4 rounded-2xl outline-none focus:border-orange-500/50 focus:bg-white/[0.08] transition-all text-white"
+                        className="w-full bg-gray-50 dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 px-4 py-4 rounded-2xl outline-none focus:border-orange-500/50 focus:bg-white dark:focus:bg-white/[0.08] transition-all text-gray-900 dark:text-white"
                         value={newMeal.quantity}
                         onChange={(e) => setNewMeal({...newMeal, quantity: Number(e.target.value)})}
                       />
                     </div>
                     <div>
-                      <label className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2 block ml-1">Category</label>
+                      <label className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2 block ml-1">Category</label>
                       <select 
-                        className="w-full bg-white/[0.05] border border-white/10 px-4 py-4 rounded-2xl outline-none focus:border-orange-500/50 focus:bg-white/[0.08] transition-all text-white"
+                        className="w-full bg-gray-50 dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 px-4 py-4 rounded-2xl outline-none focus:border-orange-500/50 focus:bg-white dark:focus:bg-white/[0.08] transition-all text-gray-900 dark:text-white"
                         value={newMeal.meal_type}
                         onChange={(e) => setNewMeal({...newMeal, meal_type: e.target.value})}
                       >
@@ -201,7 +201,7 @@ const MealTracker: React.FC = () => {
                   </div>
 
                   <div className="flex gap-4 pt-4">
-                    <button type="button" onClick={() => setIsAdding(false)} className="flex-1 py-4 text-gray-500 font-bold hover:text-white transition-colors">Cancel</button>
+                    <button type="button" onClick={() => setIsAdding(false)} className="flex-1 py-4 text-gray-400 font-bold hover:text-gray-600 dark:hover:text-white transition-colors">Cancel</button>
                     <button type="submit" className="flex-1 bg-orange-500 text-white py-4 rounded-2xl font-bold hover:bg-orange-600 transition-all">Add to Log</button>
                   </div>
                 </form>
@@ -215,19 +215,19 @@ const MealTracker: React.FC = () => {
 };
 
 const SummaryCard = ({ label, value, unit, icon }: any) => (
-  <div className="bg-white/[0.03] p-8 rounded-3xl border border-white/5 relative group hover:border-orange-500/30 transition-all overflow-hidden">
-    <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+  <div className="bg-white dark:bg-white/[0.03] p-8 rounded-3xl border border-gray-200 dark:border-white/5 relative group hover:border-orange-500/30 transition-all overflow-hidden shadow-sm">
+    <div className="absolute top-0 right-0 p-3 opacity-5 dark:opacity-10 group-hover:opacity-20 transition-opacity">
       {icon}
     </div>
-    <span className="text-gray-500 text-[10px] font-black uppercase tracking-widest block mb-2">{label}</span>
+    <span className="text-gray-400 dark:text-gray-500 text-[10px] font-black uppercase tracking-widest block mb-2">{label}</span>
     <div className="flex items-baseline gap-1">
-      <span className="text-3xl font-extrabold text-white">{Math.round(value)}</span>
-      <span className="text-gray-600 text-xs font-bold uppercase">{unit}</span>
+      <span className="text-3xl font-extrabold text-gray-900 dark:text-white">{Math.round(value)}</span>
+      <span className="text-gray-400 dark:text-gray-600 text-xs font-bold uppercase">{unit}</span>
     </div>
   </div>
 );
 
-const Zap = ({ className }: { className?: string }) => (
+const ZapIcon = ({ className }: { className?: string }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     viewBox="0 0 24 24" 

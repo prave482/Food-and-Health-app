@@ -5,28 +5,32 @@ import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   return (
-    <div className="bg-dark-bg text-white min-h-screen">
+    <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+      <section className="relative pt-32 pb-20 overflow-hidden">
         {/* Radial Glow Background */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-primary/10 rounded-full blur-[120px] pointer-events-none" />
         
-        <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-4xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-primary/10 border border-orange-primary/20 text-orange-primary text-sm font-semibold mb-8">
-              <Zap className="w-4 h-4" /> AI-Powered Nutrition
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 font-bold text-sm mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+              </span>
+              NEW: AI Meal Scanning is here
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-extrabold leading-[1.1] mb-8">
-              Fuel Your Body,<br/>
-              <span className="text-orange-primary">Track Your Health.</span>
+            <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-tight">
+              Unlock your <br />
+              <span className="text-orange-500">peak potential.</span>
             </h1>
             
-            <p className="text-xl text-text-secondary max-w-lg mb-10 leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl font-medium leading-relaxed">
               The all-in-one nutrition tracker and AI health coach designed to help you reach your peak performance and stay motivated every single day.
             </p>
             
