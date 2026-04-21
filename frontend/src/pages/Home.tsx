@@ -26,8 +26,8 @@ const Home: React.FC = () => {
             </div>
             
             <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-tight">
-              Unlock your <br />
-              <span className="text-orange-500">peak potential.</span>
+              Elevate Your Health <br />
+              With <span className="text-orange-500 font-extrabold italic">Smart AI Nutrition.</span>
             </h1>
             
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl font-medium leading-relaxed">
