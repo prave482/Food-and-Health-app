@@ -31,7 +31,7 @@ const Home: React.FC = () => {
             </h1>
             
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl font-medium leading-relaxed">
-              The all-in-one nutrition tracker and AI health coach designed to help you reach your peak performance and stay motivated every single day.
+              Experience the future of fitness. Healthify combines cutting-edge AI meal scanning with deep nutritional insights to fuel your journey toward peak performance.
             </p>
             
             {/* Hero buttons removed per user request */}

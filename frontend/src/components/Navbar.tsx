@@ -3,21 +3,23 @@ import { Link } from 'react-router-dom';
 import { Flame, LayoutDashboard, Utensils, Sun, Moon } from 'lucide-react';
 
 const Navbar: React.FC = () => {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    return saved ? saved === 'dark' : true;
+  });
 
   useEffect(() => {
-    // Initial theme set to dark as per current design
-    document.documentElement.classList.add('dark');
-  }, []);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDark]);
 
   const toggleTheme = () => {
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-      setIsDark(false);
-    } else {
-      document.documentElement.classList.add('dark');
-      setIsDark(true);
-    }
+    setIsDark(!isDark);
   };
 
   return (
@@ -40,14 +42,6 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <button 
-            onClick={toggleTheme}
-            className="p-2 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-all"
-            title="Toggle Theme"
-          >
-            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
-          
           <Link to="/dashboard" className="bg-orange-primary hover:bg-orange-light text-white px-6 py-2 rounded-full text-sm font-bold transition-all transform active:scale-95 shadow-lg shadow-orange-500/20">
             Open App
           </Link>
