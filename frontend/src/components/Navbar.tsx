@@ -23,7 +23,12 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 dark:bg-[#141414]/80 backdrop-blur-md border-b border-gray-200 dark:border-[#2A2A2A] transition-colors duration-300">
+    <motion.nav 
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="sticky top-0 z-50 bg-white/80 dark:bg-[#141414]/80 backdrop-blur-md border-b border-gray-200 dark:border-[#2A2A2A] transition-colors duration-300"
+    >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
           <div className="bg-orange-primary p-1.5 rounded-lg group-hover:scale-110 transition-transform shadow-lg shadow-orange-500/20">
@@ -47,7 +52,7 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

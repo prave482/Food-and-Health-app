@@ -1,228 +1,227 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Zap, BarChart3, ShieldCheck, Apple, Calendar, Bell, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ArrowRight, Zap, Target, TrendingUp, Shield, Smartphone, Github } from 'lucide-react';
+import { motion } from 'framer-motion';
+import Navbar from '../components/Navbar';
 
 const Home: React.FC = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
+  const floatVariants = {
+    animate: {
+      y: [0, -15, 0],
+      transition: {
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 overflow-x-hidden">
+      <Navbar />
+      
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Radial Glow Background */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      <section className="relative pt-32 pb-32 lg:pt-48 lg:pb-56">
+        {/* Animated Background Orbs */}
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] animate-pulse delay-1000" />
         
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="relative z-10"
+            >
+              <motion.div 
+                variants={itemVariants}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 font-bold text-sm mb-8 shadow-sm"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                </span>
+                V2.0 NOW LIVE: AI-POWERED MEAL TRACKING
+              </motion.div>
+              
+              <motion.h1 
+                variants={itemVariants}
+                className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.95]"
+              >
+                Elevate Health <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 italic">
+                  Smart AI Nutrition.
+                </span>
+              </motion.h1>
+              
+              <motion.p 
+                variants={itemVariants}
+                className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-xl font-medium leading-relaxed"
+              >
+                Experience the future of fitness. Healthify combines cutting-edge AI meal scanning with deep nutritional insights to fuel your journey toward peak performance.
+              </motion.p>
+              
+              <motion.div variants={itemVariants} className="flex items-center gap-8 text-sm font-bold text-gray-400 dark:text-gray-600">
+                <div className="flex -space-x-3">
+                  {[1,2,3,4].map(i => (
+                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white dark:border-black bg-gray-200 dark:bg-gray-800" />
+                  ))}
+                </div>
+                <span>Trusted by 2.4M+ elite performers</span>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="relative hidden lg:block"
+            >
+              <div className="relative z-10 bg-white dark:bg-white/[0.03] border border-gray-200 dark:border-white/5 rounded-[3rem] p-4 shadow-2xl backdrop-blur-sm">
+                <div className="bg-gray-50 dark:bg-black rounded-[2.5rem] overflow-hidden">
+                  <div className="p-8 border-b border-gray-100 dark:border-white/5 flex justify-between items-center">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-500/20" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/20" />
+                    </div>
+                    <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Dashboard Preview</div>
+                  </div>
+                  <div className="p-8 space-y-6">
+                    <div className="h-4 w-1/3 bg-orange-500/20 rounded-full" />
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="h-24 bg-orange-500/5 rounded-2xl border border-orange-500/10" />
+                      <div className="h-24 bg-blue-500/5 rounded-2xl border border-blue-500/10" />
+                    </div>
+                    <div className="h-40 bg-gray-100 dark:bg-white/5 rounded-3xl" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating Element 1 */}
+              <motion.div 
+                variants={floatVariants}
+                animate="animate"
+                className="absolute -top-12 -right-12 z-20 bg-orange-500 p-6 rounded-3xl shadow-xl shadow-orange-500/20 text-white"
+              >
+                <Zap className="w-8 h-8" />
+              </motion.div>
+
+              {/* Floating Element 2 */}
+              <motion.div 
+                animate={{ y: [0, 20, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-8 -left-12 z-20 bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 p-5 rounded-2xl shadow-xl flex items-center gap-4"
+              >
+                <div className="p-3 bg-green-500/10 rounded-xl text-green-500">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-black text-gray-400 uppercase">Growth</div>
+                  <div className="text-xl font-black">+24%</div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-24 border-t border-gray-100 dark:border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-12">
+            <FeatureCard 
+              icon={<Target className="w-6 h-6" />}
+              title="Smart Goal Setting"
+              desc="Define your trajectory with AI-driven goal optimization tailored to your unique physiology."
+            />
+            <FeatureCard 
+              icon={<Smartphone className="w-6 h-6" />}
+              title="Instant Scan"
+              desc="Log meals in seconds using state-of-the-art computer vision and deep nutritional database."
+            />
+            <FeatureCard 
+              icon={<Shield className="w-6 h-6" />}
+              title="Secure & Private"
+              desc="Your data is encrypted and managed with enterprise-grade security protocols."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Visual Quote / CTA placeholder */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 font-bold text-sm mb-8">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-              </span>
-              NEW: AI Meal Scanning is here
-            </div>
-            
-            <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-tight">
-              Elevate Your Health <br />
-              With <span className="text-orange-500 font-extrabold italic">Smart AI Nutrition.</span>
-            </h1>
-            
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl font-medium leading-relaxed">
-              Experience the future of fitness. Healthify combines cutting-edge AI meal scanning with deep nutritional insights to fuel your journey toward peak performance.
-            </p>
-            
-            {/* Hero buttons removed per user request */}
+            <h2 className="text-4xl md:text-7xl font-black mb-8 leading-tight">Ready to join the <span className="text-orange-500 italic">elite?</span></h2>
+            <p className="text-xl text-gray-500 dark:text-gray-400 mb-12 font-medium">Join 2.4 million users already achieving their fitness goals with Healthify.</p>
           </motion.div>
-
-          {/* Floating Stats Cards */}
-          <div className="relative hidden lg:block">
-            <motion.div 
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-dark-card border border-dark-border p-6 rounded-2xl absolute top-0 right-0 w-64 shadow-2xl"
-            >
-              <div className="flex items-center gap-4">
-                <div className="bg-orange-primary/20 p-3 rounded-xl">
-                  <Star className="w-6 h-6 text-orange-primary" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">2.4M</div>
-                  <div className="text-sm text-text-secondary">Happy Users</div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [0, 20, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="bg-dark-card border border-dark-border p-6 rounded-2xl absolute top-40 right-40 w-64 shadow-2xl"
-            >
-              <div className="flex items-center gap-4">
-                <div className="bg-orange-primary/20 p-3 rounded-xl">
-                  <Zap className="w-6 h-6 text-orange-primary" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">98%</div>
-                  <div className="text-sm text-text-secondary">AI Accuracy</div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="bg-dark-card border border-dark-border p-6 rounded-2xl absolute top-80 right-0 w-64 shadow-2xl"
-            >
-              <div className="flex items-center gap-4">
-                <div className="bg-orange-primary/20 p-3 rounded-xl">
-                  <Apple className="w-6 h-6 text-orange-primary" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">500k+</div>
-                  <div className="text-sm text-text-secondary">Verified Foods</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Banner */}
-      <section className="py-12 border-y border-dark-border bg-dark-bgSecondary">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-wrap justify-center md:justify-between items-center gap-8 text-center">
-            <StatItem value="2.4M+" label="Active Users" />
-            <div className="hidden md:block w-px h-12 bg-dark-border" />
-            <StatItem value="50M+" label="Meals Tracked" />
-            <div className="hidden md:block w-px h-12 bg-dark-border" />
-            <StatItem value="98%" label="Satisfaction" />
-            <div className="hidden md:block w-px h-12 bg-dark-border" />
-            <StatItem value="500+" label="Superfoods" />
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-32 bg-dark-bg" id="features">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Everything you need</h2>
-            <div className="w-24 h-1.5 bg-orange-primary mx-auto rounded-full" />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={<Zap className="w-6 h-6" />}
-              title="Instant Tracking"
-              description="Log your meals in seconds with our smart search and natural language processing."
-            />
-            <FeatureCard 
-              icon={<BarChart3 className="w-6 h-6" />}
-              title="Deep Insights"
-              description="Visualize your macros and micros with beautiful, interactive charts and daily summaries."
-            />
-            <FeatureCard 
-              icon={<ShieldCheck className="w-6 h-6" />}
-              title="AI Health Coach"
-              description="Get personalized advice and answers to your health questions from our advanced AI engine."
-            />
-            <FeatureCard 
-              icon={<Calendar className="w-6 h-6" />}
-              title="Meal Planning"
-              description="Generate weekly meal plans based on your preferences, allergies, and calorie goals."
-            />
-            <FeatureCard 
-              icon={<ArrowRight className="w-6 h-6" />}
-              title="Progress Charts"
-              description="Track your weight, body fat, and performance metrics over time with ease."
-            />
-            <FeatureCard 
-              icon={<Bell className="w-6 h-6" />}
-              title="Smart Reminders"
-              description="Never miss a meal or a water break with intelligent notifications that adapt to your schedule."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-32 bg-dark-bgSecondary border-t border-dark-border">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-20">Loved by thousands</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <TestimonialCard name="Alex Rivers" role="Fitness Enthusiast" text="The AI coach completely changed how I think about my macros. Highly recommend!" initials="AR" />
-            <TestimonialCard name="Sarah Chen" role="Yoga Instructor" text="Interface is so clean. Finally a nutrition app that doesn't feel like a spreadsheet." initials="SC" />
-            <TestimonialCard name="Mark Jones" role="Marathon Runner" text="Accurate tracking is key for my training. Healthify is the best I've used so far." initials="MJ" />
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-32 px-6">
-        <div className="container mx-auto max-w-5xl bg-dark-card border border-dark-border rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden group">
-          <div className="absolute inset-0 bg-orange-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-          <h2 className="text-4xl md:text-6xl font-extrabold mb-8 relative z-10">Ready to transform your health?</h2>
-          <p className="text-xl text-text-secondary max-w-2xl mx-auto relative z-10">Join 2.4 million users already achieving their fitness goals with Healthify.</p>
-          {/* CTA button removed per user request */}
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-20 border-t border-dark-border bg-dark-bg">
-        <div className="container mx-auto px-6 text-center">
-          <div className="flex items-center justify-center gap-2 mb-8">
-            <Flame className="w-8 h-8 text-orange-primary" />
-            <span className="text-2xl font-bold">Healthify</span>
+      <footer className="py-12 border-t border-gray-100 dark:border-white/5">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex items-center gap-2">
+            <Flame className="w-6 h-6 text-orange-500" />
+            <span className="text-xl font-black">Healthify</span>
           </div>
-          <div className="flex justify-center gap-8 mb-12 text-text-secondary">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
-            <a href="#" className="hover:text-white transition-colors">Support</a>
-            <a href="#" className="hover:text-white transition-colors">API</a>
+          <div className="flex items-center gap-8 text-sm font-bold text-gray-400 dark:text-gray-600">
+            <a href="#" className="hover:text-orange-500 transition-colors">Privacy</a>
+            <a href="#" className="hover:text-orange-500 transition-colors">Terms</a>
+            <a href="#" className="hover:text-orange-500 transition-colors">Contact</a>
           </div>
-          <p className="text-text-secondary text-sm">© 2026 Healthify AI. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Github className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
+          </div>
+        </div>
+        <div className="container mx-auto px-6 pt-12 text-center text-[10px] font-bold text-gray-500 dark:text-gray-700 uppercase tracking-widest">
+          © 2026 Healthify AI Labs. All rights reserved.
         </div>
       </footer>
     </div>
   );
 };
 
-const StatItem = ({ value, label }: { value: string, label: string }) => (
-  <div>
-    <div className="text-3xl font-extrabold text-white mb-1">{value}</div>
-    <div className="text-text-secondary text-sm font-medium">{label}</div>
-  </div>
-);
-
-const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-  <div className="bg-dark-card border border-dark-border p-8 rounded-2xl hover:border-orange-primary/40 transition-all group">
-    <div className="bg-orange-primary/10 w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-primary group-hover:text-white transition-all text-orange-primary">
+const FeatureCard = ({ icon, title, desc }: any) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="group p-10 rounded-[2.5rem] bg-white dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-orange-500/30 transition-all shadow-sm hover:shadow-xl hover:shadow-orange-500/5"
+  >
+    <div className="w-16 h-16 rounded-3xl bg-orange-500/10 text-orange-500 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
       {icon}
     </div>
-    <h3 className="text-xl font-bold mb-3">{title}</h3>
-    <p className="text-text-secondary leading-relaxed">{description}</p>
-  </div>
-);
-
-const TestimonialCard = ({ name, role, text, initials }: { name: string, role: string, text: string, initials: string }) => (
-  <div className="bg-dark-card border border-dark-border p-8 rounded-2xl">
-    <div className="flex gap-1 mb-6">
-      {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-orange-primary text-orange-primary" />)}
-    </div>
-    <p className="text-lg mb-8 text-white italic">"{text}"</p>
-    <div className="flex items-center gap-4">
-      <div className="w-12 h-12 rounded-full bg-orange-primary flex items-center justify-center font-bold text-white text-sm">
-        {initials}
-      </div>
-      <div>
-        <div className="font-bold">{name}</div>
-        <div className="text-sm text-text-secondary">{role}</div>
-      </div>
-    </div>
-  </div>
+    <h3 className="text-2xl font-black mb-4">{title}</h3>
+    <p className="text-gray-500 dark:text-gray-400 font-medium leading-relaxed">{desc}</p>
+  </motion.div>
 );
 
 const Flame = ({ className }: { className?: string }) => (
@@ -231,12 +230,12 @@ const Flame = ({ className }: { className?: string }) => (
     viewBox="0 0 24 24" 
     fill="none" 
     stroke="currentColor" 
-    strokeWidth="2.5" 
+    strokeWidth="3" 
     strokeLinecap="round" 
     strokeLinejoin="round" 
     className={className}
   >
-    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.204 1.146-3.146" />
+    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.206 1.146-3" />
   </svg>
 );
 
