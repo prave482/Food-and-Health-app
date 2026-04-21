@@ -30,11 +30,7 @@ const Home: React.FC = () => {
               The all-in-one nutrition tracker and AI health coach designed to help you reach your peak performance and stay motivated every single day.
             </p>
             
-            <div className="mt-12">
-              <Link to="/dashboard" className="inline-flex items-center gap-3 px-12 py-5 rounded-full bg-orange-500 text-white font-black text-xl hover:bg-orange-400 transition-all shadow-[0_0_50px_rgba(249,115,22,0.3)] group">
-                Launch Application <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-              </Link>
-            </div>
+            {/* Hero buttons removed per user request */}
           </motion.div>
 
           {/* Floating Stats Cards */}
