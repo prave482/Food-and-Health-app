@@ -1,18 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Zap, Target, TrendingUp, Shield, Smartphone, Github } from 'lucide-react';
+import { ArrowRight, Zap, Target, TrendingUp, Shield, Smartphone, Github, Heart, Award, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
 
 const Home: React.FC = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
+      transition: { staggerChildren: 0.2, delayChildren: 0.3 }
     }
   };
 
@@ -25,184 +21,156 @@ const Home: React.FC = () => {
     }
   };
 
-  const floatVariants = {
-    animate: {
-      y: [0, -15, 0],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 overflow-x-hidden">
-      <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-32 lg:pt-48 lg:pb-56">
-        {/* Animated Background Orbs */}
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] animate-pulse delay-1000" />
+      <section className="relative pt-32 pb-32 lg:pt-48 lg:pb-56 overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[120px] will-change-transform" />
         
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="relative z-10"
-            >
-              <motion.div 
-                variants={itemVariants}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 font-bold text-sm mb-8 shadow-sm"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-                </span>
-                V2.0 NOW LIVE: AI-POWERED MEAL TRACKING
+            <motion.div variants={containerVariants} initial="hidden" animate="visible">
+              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 font-bold text-sm mb-8">
+                TRUSTED BY 2.4M+ ELITE USERS
               </motion.div>
               
-              <motion.h1 
-                variants={itemVariants}
-                className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.95]"
-              >
-                Elevate Health <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 italic">
-                  Smart AI Nutrition.
+              <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.95]">
+                Master Your <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600 italic">
+                  Nutrition.
                 </span>
               </motion.h1>
               
-              <motion.p 
-                variants={itemVariants}
-                className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-xl font-medium leading-relaxed"
-              >
-                Experience the future of fitness. Healthify combines cutting-edge AI meal scanning with deep nutritional insights to fuel your journey toward peak performance.
+              <motion.p variants={itemVariants} className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-xl font-medium leading-relaxed">
+                Healthify is the world's most advanced nutritional performance platform. Track every macro, analyze every trend, and reach your peak potential with precision data.
               </motion.p>
               
-              <motion.div variants={itemVariants} className="flex items-center gap-8 text-sm font-bold text-gray-400 dark:text-gray-600">
-                <div className="flex -space-x-3">
-                  {[1,2,3,4].map(i => (
-                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white dark:border-black bg-gray-200 dark:bg-gray-800" />
-                  ))}
-                </div>
-                <span>Trusted by 2.4M+ elite performers</span>
+              <motion.div variants={itemVariants} className="flex gap-4">
+                <Link to="/dashboard" className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-full font-black text-lg transition-all shadow-xl shadow-orange-500/20">
+                  Enter Dashboard
+                </Link>
+                <Link to="/tracker" className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 px-10 py-5 rounded-full font-black text-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-all">
+                  Log a Meal
+                </Link>
               </motion.div>
             </motion.div>
 
             <motion.div 
-              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
               className="relative hidden lg:block"
             >
-              <div className="relative z-10 bg-white dark:bg-white/[0.03] border border-gray-200 dark:border-white/5 rounded-[3rem] p-4 shadow-2xl backdrop-blur-sm">
-                <div className="bg-gray-50 dark:bg-black rounded-[2.5rem] overflow-hidden">
-                  <div className="p-8 border-b border-gray-100 dark:border-white/5 flex justify-between items-center">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-500/20" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
-                      <div className="w-3 h-3 rounded-full bg-green-500/20" />
-                    </div>
-                    <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Dashboard Preview</div>
+              <div className="relative bg-white dark:bg-white/[0.03] border border-gray-200 dark:border-white/5 rounded-[3rem] p-8 shadow-2xl overflow-hidden">
+                <div className="flex justify-between items-center mb-8">
+                  <h3 className="font-black text-xl">Daily Performance</h3>
+                  <div className="p-2 bg-orange-500/10 rounded-xl text-orange-500">
+                    <TrendingUp className="w-6 h-6" />
                   </div>
-                  <div className="p-8 space-y-6">
-                    <div className="h-4 w-1/3 bg-orange-500/20 rounded-full" />
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="h-24 bg-orange-500/5 rounded-2xl border border-orange-500/10" />
-                      <div className="h-24 bg-blue-500/5 rounded-2xl border border-blue-500/10" />
+                </div>
+                <div className="space-y-6">
+                  {[1,2,3].map(i => (
+                    <div key={i} className="h-4 bg-gray-100 dark:bg-white/5 rounded-full w-full overflow-hidden">
+                      <div className="h-full bg-orange-500 w-[70%]" style={{ width: `${40 + i*20}%` }} />
                     </div>
-                    <div className="h-40 bg-gray-100 dark:bg-white/5 rounded-3xl" />
-                  </div>
+                  ))}
                 </div>
               </div>
-              
-              {/* Floating Element 1 */}
-              <motion.div 
-                variants={floatVariants}
-                animate="animate"
-                className="absolute -top-12 -right-12 z-20 bg-orange-500 p-6 rounded-3xl shadow-xl shadow-orange-500/20 text-white"
-              >
-                <Zap className="w-8 h-8" />
-              </motion.div>
-
-              {/* Floating Element 2 */}
-              <motion.div 
-                animate={{ y: [0, 20, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-8 -left-12 z-20 bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 p-5 rounded-2xl shadow-xl flex items-center gap-4"
-              >
-                <div className="p-3 bg-green-500/10 rounded-xl text-green-500">
-                  <TrendingUp className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-black text-gray-400 uppercase">Growth</div>
-                  <div className="text-xl font-black">+24%</div>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-24 border-t border-gray-100 dark:border-white/5">
+      {/* Detailed Features Section */}
+      <section className="py-24 bg-white dark:bg-[#050505] transition-colors">
         <div className="container mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-black mb-6">Built for Excellence</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto font-medium">We've combined sports science with modern technology to give you the ultimate edge in your health journey.</p>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-12">
             <FeatureCard 
               icon={<Target className="w-6 h-6" />}
-              title="Smart Goal Setting"
-              desc="Define your trajectory with AI-driven goal optimization tailored to your unique physiology."
+              title="Hyper-Personalized Goals"
+              desc="Our algorithms calculate your precise caloric and macronutrient requirements based on your unique metabolic profile, activity levels, and body composition goals."
             />
             <FeatureCard 
-              icon={<Smartphone className="w-6 h-6" />}
-              title="Instant Scan"
-              desc="Log meals in seconds using state-of-the-art computer vision and deep nutritional database."
+              icon={<ActivityIcon className="w-6 h-6" />}
+              title="Real-Time Analytics"
+              desc="Visualize your progress with deep-dive charts. Understand how every meal impacts your weekly trends and long-term health markers with our intuitive data engine."
             />
             <FeatureCard 
               icon={<Shield className="w-6 h-6" />}
-              title="Secure & Private"
-              desc="Your data is encrypted and managed with enterprise-grade security protocols."
+              title="Privacy First Data"
+              desc="Your health data is sacred. We use multi-layered encryption to ensure your personal nutrition logs remain completely private and under your total control."
+            />
+            <FeatureCard 
+              icon={<Heart className="w-6 h-6" />}
+              title="Heart-Healthy Choices"
+              desc="Our database prioritizes nutrient density, helping you choose foods that support cardiovascular health, reduce inflammation, and improve longevity."
+            />
+            <FeatureCard 
+              icon={<Award className="w-6 h-6" />}
+              title="Performance Optimized"
+              desc="Tailored for athletes and high-performers who need exact precision in their fuel. Optimize your timing and ratios for maximum physical output."
+            />
+            <FeatureCard 
+              icon={<Users className="w-6 h-6" />}
+              title="Community Driven"
+              desc="Join a global network of health-conscious individuals. Share insights, stay motivated, and achieve your goals alongside 2.4 million others."
             />
           </div>
         </div>
       </section>
 
-      {/* Visual Quote / CTA placeholder */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
-          >
-            <h2 className="text-4xl md:text-7xl font-black mb-8 leading-tight">Ready to join the <span className="text-orange-500 italic">elite?</span></h2>
-            <p className="text-xl text-gray-500 dark:text-gray-400 mb-12 font-medium">Join 2.4 million users already achieving their fitness goals with Healthify.</p>
-          </motion.div>
+      {/* Why Choose Us Section */}
+      <section className="py-32 bg-gray-50 dark:bg-black">
+        <div className="container mx-auto px-6">
+          <div className="bg-orange-500 rounded-[3rem] p-12 md:p-20 text-white flex flex-col md:flex-row items-center gap-12 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+            <div className="flex-1 relative z-10">
+              <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">Your Health, <br />Reimagined.</h2>
+              <p className="text-xl text-white/80 mb-10 font-medium max-w-xl">
+                Healthify isn't just another tracker. It's a comprehensive ecosystem designed to eliminate guesswork and provide the clarity you need to succeed.
+              </p>
+              <ul className="space-y-4 font-bold">
+                <li className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">✓</div>
+                  No confusing ads or hidden paywalls
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">✓</div>
+                  Instant syncing across all your devices
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">✓</div>
+                  Verified nutritional database of 1M+ items
+                </li>
+              </ul>
+            </div>
+            <div className="flex-1 relative z-10">
+              <div className="bg-black/20 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/10">
+                <div className="text-center py-12">
+                  <h4 className="text-2xl font-black mb-2 italic">"The only app that actually understands my metabolism."</h4>
+                  <p className="text-white/60 font-bold uppercase tracking-widest text-xs">- Sarah J., Professional Triathlete</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="py-12 border-t border-gray-100 dark:border-white/5">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-2">
-            <Flame className="w-6 h-6 text-orange-500" />
+        <div className="container mx-auto px-6 text-center">
+          <div className="flex items-center justify-center gap-2 mb-8">
+            <FlameIcon className="w-6 h-6 text-orange-500" />
             <span className="text-xl font-black">Healthify</span>
           </div>
-          <div className="flex items-center gap-8 text-sm font-bold text-gray-400 dark:text-gray-600">
-            <a href="#" className="hover:text-orange-500 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-orange-500 transition-colors">Terms</a>
-            <a href="#" className="hover:text-orange-500 transition-colors">Contact</a>
-          </div>
-          <div className="flex items-center gap-4">
-            <Github className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-          </div>
-        </div>
-        <div className="container mx-auto px-6 pt-12 text-center text-[10px] font-bold text-gray-500 dark:text-gray-700 uppercase tracking-widest">
-          © 2026 Healthify AI Labs. All rights reserved.
+          <div className="text-gray-500 font-bold text-sm mb-4">© 2026 Healthify Performance Labs. All rights reserved.</div>
+          <div className="text-[10px] text-gray-400 uppercase tracking-[0.2em]">Designed for elite performance</div>
         </div>
       </footer>
     </div>
@@ -214,7 +182,7 @@ const FeatureCard = ({ icon, title, desc }: any) => (
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    className="group p-10 rounded-[2.5rem] bg-white dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-orange-500/30 transition-all shadow-sm hover:shadow-xl hover:shadow-orange-500/5"
+    className="group p-10 rounded-[2.5rem] bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 hover:border-orange-500/30 transition-all shadow-sm"
   >
     <div className="w-16 h-16 rounded-3xl bg-orange-500/10 text-orange-500 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
       {icon}
@@ -224,7 +192,22 @@ const FeatureCard = ({ icon, title, desc }: any) => (
   </motion.div>
 );
 
-const Flame = ({ className }: { className?: string }) => (
+const ActivityIcon = ({ className }: { className?: string }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2.5" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+  </svg>
+);
+
+const FlameIcon = ({ className }: { className?: string }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     viewBox="0 0 24 24" 

@@ -4,7 +4,8 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import MealTracker from './pages/MealTracker';
 import Dashboard from './pages/Dashboard';
-import AICoach from './pages/AICoach';
+import Dashboard from './pages/Dashboard';
+import Analytics from './pages/Analytics';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -20,7 +21,7 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-black transition-colors duration-300">
         <Navbar />
         <main className="flex-1">
           <Routes>
@@ -36,8 +37,8 @@ const App: React.FC = () => {
               element={<PrivateRoute><Dashboard /></PrivateRoute>} 
             />
             <Route 
-              path="/coach" 
-              element={<PrivateRoute><AICoach /></PrivateRoute>} 
+              path="/analytics" 
+              element={<PrivateRoute><Analytics /></PrivateRoute>} 
             />
             <Route 
               path="/profile" 

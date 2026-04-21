@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Flame, LayoutDashboard, Utensils, Sun, Moon } from 'lucide-react';
+import { Flame, LayoutDashboard, Utensils, Sun, Moon, MessageSquare, PieChart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Navbar: React.FC = () => {
@@ -43,7 +43,10 @@ const Navbar: React.FC = () => {
             <LayoutDashboard className="w-4 h-4" /> Dashboard
           </Link>
           <Link to="/tracker" className="text-sm font-bold text-gray-500 dark:text-white/60 hover:text-orange-500 dark:hover:text-white transition-colors flex items-center gap-2">
-            <Utensils className="w-4 h-4" /> Meal Tracker
+            <Utensils className="w-4 h-4" /> Tracker
+          </Link>
+          <Link to="/analytics" className="text-sm font-bold text-gray-500 dark:text-white/60 hover:text-orange-500 dark:hover:text-white transition-colors flex items-center gap-2">
+            <PieChart className="w-4 h-4" /> Analytics
           </Link>
         </div>
 
