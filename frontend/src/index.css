@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0D0D0D;
+  --bg-secondary: #141414;
+  --bg-card: #1A1A1A;
+  --orange-primary: #FF6B00;
+  --orange-light: #FF8C38;
+  --orange-glow: rgba(255, 107, 0, 0.12);
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A0;
+  --border: #2A2A2A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange-primary);
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#FF6B00] text-white px-8 py-3 rounded-full font-bold transition-all hover:bg-[#FF8C38] active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply border border-[#FF6B00] text-[#FF6B00] px-8 py-3 rounded-full font-bold transition-all hover:bg-[#FF6B0010] active:scale-95;
+  }
+
+  .card-dark {
+    @apply bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6 transition-all hover:border-[#FF6B0040];
+  }
+
+  .orange-glow {
+    box-shadow: 0 0 40px var(--orange-glow);
+  }
+}

@@ -1,0 +1,49 @@
+steps:
+  # Build Backend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO/backend:$COMMIT_SHA', './backend']
+  
+  # Build Frontend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO/frontend:$COMMIT_SHA', './frontend']
+
+  # Push to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO/backend:$COMMIT_SHA']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO/frontend:$COMMIT_SHA']
+
+  # Deploy Backend to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'backend'
+      - '--image=$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO/backend:$COMMIT_SHA'
+      - '--region=$_REGION'
+      - '--platform=managed'
+      - '--set-env-vars=POSTGRES_URL=$_DB_URL'
+      - '--set-secrets=JWT_SECRET=JWT_SECRET:latest,GEMINI_API_KEY=GEMINI_API_KEY:latest,USDA_API_KEY=USDA_API_KEY:latest'
+
+  # Deploy Frontend to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'frontend'
+      - '--image=$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO/frontend:$COMMIT_SHA'
+      - '--region=$_REGION'
+      - '--platform=managed'
+      - '--set-env-vars=VITE_API_URL=$_BACKEND_URL/api'
+
+substitutions:
+  _REGION: us-central1
+  _REPO: food-health-repo
+  _DB_URL: "" # To be provided at runtime or via build trigger
+  _BACKEND_URL: ""
+
+images:
+  - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO/backend:$COMMIT_SHA'
+  - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO/frontend:$COMMIT_SHA'
