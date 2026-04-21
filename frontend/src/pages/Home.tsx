@@ -161,10 +161,8 @@ const Home: React.FC = () => {
         <div className="container mx-auto max-w-5xl bg-dark-card border border-dark-border rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden group">
           <div className="absolute inset-0 bg-orange-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
           <h2 className="text-4xl md:text-6xl font-extrabold mb-8 relative z-10">Ready to transform your health?</h2>
-          <p className="text-xl text-text-secondary mb-12 max-w-2xl mx-auto relative z-10">Join 2.4 million users already achieving their fitness goals with Healthify.</p>
-          <Link to="/register" className="inline-flex bg-orange-primary hover:bg-orange-light text-white px-12 py-5 rounded-full font-bold text-xl transition-all shadow-xl shadow-orange-primary/20 relative z-10">
-            Get Started Now
-          </Link>
+          <p className="text-xl text-text-secondary max-w-2xl mx-auto relative z-10">Join 2.4 million users already achieving their fitness goals with Healthify.</p>
+          {/* CTA button removed per user request */}
         </div>
       </section>
 
